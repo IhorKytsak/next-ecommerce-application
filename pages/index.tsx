@@ -1,7 +1,21 @@
-export default function Home() {
+import type { InferGetStaticPropsType } from 'next';
+import getAllProducts from '../framework/shopify/product/getAllProducts';
+
+export async function getStaticProps() {
+  const products = await getAllProducts();
+
+  return {
+    props: {
+      products,
+    },
+    revalidate: 4 * 60 * 60,
+  };
+}
+
+const Home = ({ products }: InferGetStaticPropsType<typeof getStaticProps>) => {
   const message: string = 'Welcome to';
 
-  let a: AddEventListenerOptions
+  return <div>{<div>{JSON.stringify(products)}</div>}</div>;
+};
 
-  return <div>{message}</div>;
-}
+export default Home;
