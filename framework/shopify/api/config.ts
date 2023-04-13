@@ -1,4 +1,4 @@
-import { ApiConfig } from '@common/types/api';
+import type { ApiConfig } from '@common/types/api';
 import { fetchApi } from '../utils';
 
 class Config {

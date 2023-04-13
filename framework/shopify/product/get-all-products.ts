@@ -1,7 +1,8 @@
 import { normalizeProduct, getAllProductsQuery } from '../utils';
-import { ProductConnection } from '../schema';
-import { Product } from '@common/types/product';
-import { ApiConfig } from '@common/types/api';
+
+import type { ProductConnection } from '../schema';
+import type { Product } from '@common/types/product';
+import type { ApiConfig } from '@common/types/api';
 
 type ReturnType = {
   products: ProductConnection;

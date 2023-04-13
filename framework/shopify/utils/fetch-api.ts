@@ -1,4 +1,4 @@
-import { ApiFetcherOptions, ApiFetcherResults } from '@common/types/api';
+import type { ApiFetcherOptions, ApiFetcherResults } from '@common/types/api';
 
 const fetchApi = async <T>({
   url,
