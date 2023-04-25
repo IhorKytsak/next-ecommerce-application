@@ -14,7 +14,7 @@ const ProductCard: FC<Props> = ({ product, variant = 'simple' }) => {
     <Link className={s.root} href={`/products/${product.slug}`}>
       {variant === 'slim' ? (
         <>
-          <div className='inset-0 flex items-center justify-start  absolute z-20'>
+          <div className='inset-0 flex items-center justify-center  absolute z-20'>
             <span className='bg-black text-white p-3 font-bold text-xl'>
               {product.name}
             </span>

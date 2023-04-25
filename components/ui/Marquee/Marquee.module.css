@@ -1,5 +1,9 @@
 .root {
-  @apply flex h-[320px] items-center justify-center;
+  @apply flex h-[320px] items-center justify-center bg-black;
+}
+
+.secondary {
+  @apply bg-white;
 }
 
 .container {

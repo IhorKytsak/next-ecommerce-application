@@ -1,14 +1,19 @@
 import { ReactNode, FC } from 'react';
-// import Ticker from 'react-ticker';
+import cn from 'classnames';
 import s from './Marquee.module.css';
 
 interface Props {
   children: ReactNode[];
+  variant?: 'primary' | 'secondary';
 }
 
-const Marquee: FC<Props> = ({ children }) => {
+const Marquee: FC<Props> = ({ children, variant = 'primary' }) => {
+  const rootClassName = cn(s.root, {
+    [s.secondary]: variant === 'secondary',
+  });
+
   return (
-    <div className={s.root}>
+    <div className={rootClassName}>
       <div className={s.container}>
         <div className={s.slider}>
           {children}
