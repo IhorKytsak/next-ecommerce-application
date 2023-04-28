@@ -1,7 +1,7 @@
 import '@assets/main.css';
 import type { AppProps } from 'next/app';
 import type { FC, ReactNode } from 'react';
-import { UIProvider, useUI } from '@components/ui/context';
+import { UIProvider } from '@components/ui/context';
 
 interface PropsWithChildren {
   children: ReactNode;
@@ -18,9 +18,6 @@ const MyApp = ({
   pageProps,
 }: AppProps & { Component: AdditionalComponentProps }) => {
   const Layout = Component.Layout ?? Noop;
-  const ui = useUI();
-
-  console.log(ui);
 
   return (
     <UIProvider>
