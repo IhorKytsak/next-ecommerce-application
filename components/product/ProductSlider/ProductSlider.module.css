@@ -1,5 +1,5 @@
 .root {
-  @apply relative w-full h-full;
+  @apply relative w-full  ;
   overflow-y: hidden;
 }
 
@@ -21,19 +21,11 @@
 .leftControl {
   @apply bg-cover left-10;
   background-image: url('/cursor-left.png');
-
-  @screen md {
-    @apply left-6;
-  }
 }
 
 .rightControl {
-  @apply bg-cover right-10;
+  @apply bg-cover -right-6;
   background-image: url('/cursor-right.png');
-
-  @screen md {
-    @apply right-6;
-  }
 }
 
 .control {

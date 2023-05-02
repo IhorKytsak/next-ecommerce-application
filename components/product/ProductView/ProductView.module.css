@@ -64,9 +64,9 @@
   @apply absolute z-10 inset-0 flex items-center justify-center overflow-x-hidden;
 }
 
-/* .imageContainer {
-  @apply h-full;
-} */
+.imageContainer {
+  @apply flex items-center justify-center;
+}
 
 .imageContainer > div {
   @apply h-full;
