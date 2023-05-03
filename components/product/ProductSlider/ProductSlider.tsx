@@ -19,8 +19,6 @@ const ProductSlider: FC<{ children: ReactNode }> = ({ children }) => {
     },
   });
 
-  console.log(currentSlide);
-
   return (
     <div className={s.root}>
       <div
