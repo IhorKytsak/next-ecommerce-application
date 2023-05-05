@@ -4,7 +4,7 @@ const nextConfig = {
   reactStrictMode: true,
   publicRuntimeConfig: {
     framework: {
-      name: 'shopify_local',
+      name: process.env.NEXT_PUBLIC_FRAMEWORK,
     },
   },
 

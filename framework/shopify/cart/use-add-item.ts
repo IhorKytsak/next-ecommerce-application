@@ -4,12 +4,19 @@ import { MutationHook } from '@common/types/hooks';
 export default useAddItem;
 
 export const handler: MutationHook = {
-  fetcher: (input: any) => {
-    return JSON.stringify(input) + '_MODIFIED';
+  fetcherOptions: {
+    query: `query { hello }`,
+  },
+  fetcher: async ({ fetch, options }) => {
+    const response = await fetch({
+      ...options,
+    });
+
+    return response;
   },
   useHook: ({ fetch }) => {
-    return (input: any) => {
-      const response = fetch(input);
+    return async (input: any) => {
+      const response = await fetch(input);
       return {
         output: response,
       };
