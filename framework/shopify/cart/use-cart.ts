@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import useCart from '@common/cart/use-cart';
 import { createCheckout, getCheckoutQuery } from '@framework/utils';
 
@@ -8,7 +9,6 @@ export const handler = {
     query: getCheckoutQuery,
   },
   async fetcher({ fetch, options, input: { checkoutId } }: any) {
-    const data = await fetch({ ...options });
     let checkout;
 
     if (checkoutId) {
@@ -24,12 +24,18 @@ export const handler = {
       checkout = await createCheckout(fetch);
     }
 
+    //! Normalize checkout !
     return checkout;
   },
   useHook: ({ useData }: any) => {
-    const data = useData();
-    return {
-      data,
-    };
+    const data = useData({
+      swrOptions: {
+        revalidateOnFocus: false,
+      },
+    });
+
+    return useMemo(() => {
+      return data;
+    }, [data]);
   },
 };
