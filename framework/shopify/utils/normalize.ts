@@ -1,4 +1,6 @@
 import type {
+  Checkout,
+  CheckoutLineItemEdge,
   MoneyV2,
   ImageEdge,
   Product as ShopifyProduct,
@@ -7,6 +9,48 @@ import type {
   SelectedOption,
 } from '../schema';
 import type { Product } from '@common/types/product';
+import type { Cart } from '@common/types/cart';
+
+export const normalizeCart = (checkout: Checkout): Cart => {
+  return {
+    id: checkout.id,
+    createdAt: checkout.createdAt,
+    currency: {
+      code: checkout.totalPriceV2.currencyCode,
+    },
+    taxesIncluded: checkout.taxesIncluded,
+    lineItemsSubtotalPrice: +checkout.subtotalPriceV2.amount,
+    totalPrice: checkout.totalPriceV2.amount,
+    lineItems: checkout.lineItems.edges.map(normalizeLineItem),
+    discounts: [],
+  };
+};
+
+const normalizeLineItem = ({
+  node: { id, title, variant, ...rest },
+}: CheckoutLineItemEdge): any => {
+  return {
+    id,
+    variantId: String(variant?.id),
+    productId: String(variant?.id),
+    name: title,
+    path: variant?.product?.handle ?? '',
+    discounts: [],
+    // TODO: options
+    variant: {
+      id: String(variant?.id),
+      sku: variant?.sku ?? '',
+      name: variant?.title,
+      // TODO: image
+      requiresShipping: variant?.requiresShipping ?? false,
+      // actual price
+      price: variant?.priceV2.amount,
+      // base price
+      listPrice: variant?.compareAtPriceV2?.amount,
+    },
+    ...rest,
+  };
+};
 
 const normalizeProductImages = ({ edges }: { edges: Array<ImageEdge> }) =>
   edges.map(({ node: { originalSrc: url, ...rest } }) => ({
