@@ -13,4 +13,5 @@ const checkoutCreate = `
     }
   }
 `;
+
 export default checkoutCreate;

@@ -51,4 +51,8 @@ export const checkoutDetailFragment = `
             handle
           }
         }
-  `;
+        quantity
+      }
+    }
+  }
+`;
